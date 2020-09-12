@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:What_is_My_Token"
         mc:Ignorable="d"
-        Title="MainWindow" Height="403" Width="344.375">
+        Title="What is my Token" Height="403" Width="344.375">
     <Grid>
         <TextBox x:Name="Discord_Textbox" HorizontalAlignment="Left" Height="44" Margin="8,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316"/>
         <TextBox x:Name="Web_Discord_Textbox" HorizontalAlignment="Left" Height="44" Margin="8,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316"/>
