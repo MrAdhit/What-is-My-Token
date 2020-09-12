@@ -1,0 +1,17 @@
+﻿<Window x:Class="What_is_My_Token.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:What_is_My_Token"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="403" Width="344.375">
+    <Grid>
+        <TextBox x:Name="Discord_Textbox" HorizontalAlignment="Left" Height="44" Margin="8,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316"/>
+        <TextBox x:Name="Web_Discord_Textbox" HorizontalAlignment="Left" Height="44" Margin="8,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316"/>
+        <Label x:Name="Web_Discord_Label" Content="Web Discord" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="61,102,59,232" VerticalAlignment="Center" Height="38" Width="216"/>
+        <Label x:Name="Discord_Label" Content="Discord App" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="61,10,59,324" VerticalAlignment="Center" Height="38" Width="216"/>
+        <Button x:Name="GetToken_Button" Content="Get Token" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Width="314" Height="78" Click="GetToken_Button_Click"/>
+
+    </Grid>
+</Window>
